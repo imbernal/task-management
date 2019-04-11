@@ -1,0 +1,30 @@
+@import "./variables";
+
+.table {
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+  }
+
+  &__head {
+    padding: 0px 13px 0px 13px;
+    background: $app-background-color;
+  }
+
+  &__body {
+    ul {
+      padding: 0;
+      border-bottom: 2px solid $app-background-color;
+    }
+  }
+
+  &__th {
+    padding: 10px;
+  }
+
+  &__td {
+    padding: 20px;
+  }
+}

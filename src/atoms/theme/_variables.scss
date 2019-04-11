@@ -1,0 +1,34 @@
+$white-color: #ffffff;
+$yellow-color: #ffc107;
+$red-color: #dc3545;
+$app-background-color: rgb(246, 248, 249);
+$border-item-table-color: rgb(238, 241, 242);
+
+@mixin flex {
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+}
+
+@mixin btn($hover: false) {
+  @if $hover {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+  } @else {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+  }
+}
+
+@mixin box-shadow($horiz: 0.5em, $vert: 0.5em, $blur: 0.5em, $color: #edeff1) {
+  -webkit-box-shadow: $horiz $vert $blur $color;
+  -moz-box-shadow: $horiz $vert $blur $color;
+  box-shadow: $horiz $vert $blur $color;
+}

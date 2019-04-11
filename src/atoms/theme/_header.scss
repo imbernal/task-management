@@ -1,0 +1,17 @@
+@import "./variables";
+
+.header {
+  @include flex;
+  width: 100%;
+  background-color: $white-color;
+  justify-content: space-between;
+  align-items: center;
+
+  &__title {
+    margin-left: 1rem;
+  }
+
+  &__options {
+    margin-right: 1rem;
+  }
+}
