@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "name": "This is my task 1",
+        "complete": 1,
+        "due": "04/10/2018",
+        "assignTo": "Israel",
+        "createdBy": "Alex"
+    },
+    {
+        "id": 2,
+        "name": "This is my task 2",
+        "complete": 0,
+        "due": "04/10/2019",
+        "assignTo": "Israel",
+        "createdBy": "Alex"
+    },
+    {
+        "id": 3,
+        "name": "This is my task 3",
+        "complete": 0,
+        "due": "04/10/2019",
+        "assignTo": "Israel",
+        "createdBy": "Alex"
+    },
+    {
+        "id": 4,
+        "name": "This is my task 4",
+        "complete": 0,
+        "due": "04/10/2019",
+        "assignTo": "Israel",
+        "createdBy": "Alex"
+    },
+    {
+        "id": 5,
+        "name": "This is my task 4",
+        "complete": 0,
+        "due": "04/10/2019",
+        "assignTo": "Israel",
+        "createdBy": "Alex"
+    },
+    {
+        "id": 6,
+        "name": "This is my task 4",
+        "complete": 0,
+        "due": "04/10/2019",
+        "assignTo": "Israel",
+        "createdBy": "Alex"
+    }
+]

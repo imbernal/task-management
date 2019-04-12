@@ -1,6 +1,5 @@
 @import "./main";
-@import "./table";
-@import "./_header";
-@import "./_footer";
-
-@import "../../components/ListTask/listTask.module.scss";
+@import "./components/header";
+@import "./components/footer";
+@import ".//components/listTask";
+@import "./components/task";

@@ -2,6 +2,7 @@
 
 .header {
   @include flex;
+  @include box-shadow();
   width: 100%;
   background-color: $white-color;
   justify-content: space-between;
@@ -9,6 +10,13 @@
 
   &__title {
     margin-left: 1rem;
+  }
+
+  &__logo {
+    img {
+      max-width: 100px;
+      object-fit: cover;
+    }
   }
 
   &__options {

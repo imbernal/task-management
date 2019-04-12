@@ -1,0 +1,47 @@
+@import "../variables";
+
+$header-color: #455fe7;
+
+.card {
+  background-color: $white-color;
+  margin: 10px;
+  width: 350px;
+  @include box-shadow;
+
+  &__title {
+    margin: 0;
+    background: $header-color;
+    padding: 10px;
+    color: #ffffff;
+    text-align: center;
+  }
+
+  &__due {
+    background: $danger-color !important;
+  }
+
+  &__content {
+    padding: 10px;
+
+    ul {
+      list-style-type: none;
+    }
+
+    li {
+      font-size: 17px;
+
+      &::before {
+        content: "•";
+        color: $header-color;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  &__footer {
+    padding: 10px;
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: space-around;
+  }
+}
