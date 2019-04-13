@@ -20,11 +20,11 @@ const Task = ({ task, onHandleState }) => (
                     {task.complete === 1 ? 'True' : "False"}
                 </li>
                 <li>
-                    <strong>Assig To: </strong>
-                    {task.assignTo}
+                    <strong>Priority: </strong>
+                    {task.priority}
                 </li>
-                <li><strong>Create By: </strong>
-                    {task.createdBy}
+                <li><strong>Summary: </strong>
+                    {task.summary}
                 </li>
             </ul>
         </div>

@@ -3,48 +3,48 @@
         "id": 1,
         "name": "This is my task 1",
         "complete": 1,
-        "due": "04/10/2018",
-        "assignTo": "Israel",
-        "createdBy": "Alex"
+        "due": "Thu Apr 11 2019 20:55:54 GMT-0400 (Eastern Daylight Time)",
+        "priority": 1,
+        "summary": "this is a task"
     },
     {
         "id": 2,
         "name": "This is my task 2",
         "complete": 0,
         "due": "04/10/2019",
-        "assignTo": "Israel",
-        "createdBy": "Alex"
+        "priority": 1,
+        "summary": "this is a task"
     },
     {
         "id": 3,
         "name": "This is my task 3",
         "complete": 0,
         "due": "04/10/2019",
-        "assignTo": "Israel",
-        "createdBy": "Alex"
+        "priority": 1,
+        "summary": "this is a task"
     },
     {
         "id": 4,
         "name": "This is my task 4",
         "complete": 0,
         "due": "04/10/2019",
-        "assignTo": "Israel",
-        "createdBy": "Alex"
+        "priority": 1,
+        "summary": "this is a task"
     },
     {
         "id": 5,
         "name": "This is my task 4",
         "complete": 0,
         "due": "04/10/2019",
-        "assignTo": "Israel",
-        "createdBy": "Alex"
+        "priority": 1,
+        "summary": "this is a task"
     },
     {
         "id": 6,
         "name": "This is my task 4",
         "complete": 0,
         "due": "04/10/2019",
-        "assignTo": "Israel",
-        "createdBy": "Alex"
+        "priority": 1,
+        "summary": "this is a task"
     }
 ]

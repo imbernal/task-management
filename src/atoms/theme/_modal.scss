@@ -1,0 +1,79 @@
+@import "./variables";
+
+.modal {
+  &__header {
+    padding: 10px;
+    background: $header-color;
+    color: white;
+  }
+
+  &__footer {
+    @include flex;
+    padding: 10px;
+    justify-content: flex-end;
+    background-color: $app-background-color;
+
+    .btn__primary {
+      margin-right: 20px;
+    }
+  }
+}
+
+.form-input {
+  padding: 0 0.1rem 0.1rem 0.5rem;
+  font-size: 1rem;
+  color: $input-color;
+  background-color: $white-color;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.label-form {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-size: 1.2rem;
+}
+
+.taskForm {
+  @include flex;
+  flex-direction: column;
+
+  &__topContent {
+    @include flex;
+    flex-direction: column;
+    padding: 30px;
+
+    &__due {
+      text-align: center;
+    }
+
+    &__priority {
+      width: 30%;
+    }
+
+    textarea {
+      padding-left: 0;
+    }
+
+    input {
+      height: 30px;
+      width: 100%;
+    }
+
+    select {
+      height: 35px;
+    }
+  }
+}
+
+.required {
+  border-color: $danger-color !important;
+}
+
+.popup-content {
+  width: 40% !important;
+  bottom: 10%;
+  padding: 0 !important;
+}

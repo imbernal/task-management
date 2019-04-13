@@ -5,12 +5,13 @@ import '../atoms/theme/index.scss';
 import 'font-awesome/css/font-awesome.min.css';
 import * as _ from 'lodash';
 
-import mockData from '../data/tasks';
+import tasks from '../data/tasks';
+import priorities from '../data/priorities.json';
+
 
 // Components
 import {
   Header,
-  Footer,
   ListTask
 } from '../components/index'
 
@@ -22,7 +23,8 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      tasks: mockData
+      tasks,
+      priorities
     };
 
     this.onHandleState = this.onHandleState.bind(this);
@@ -71,7 +73,7 @@ class App extends React.Component {
       <React.Fragment>
         <div className="content">
           <div className="content__container">
-            <Header />
+            <Header priorities={this.state.priorities} />
             <ListTask tasks={this.state.tasks} onHandleState={this.onHandleState} />
           </div>
         </div>

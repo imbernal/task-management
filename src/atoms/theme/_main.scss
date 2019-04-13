@@ -9,6 +9,11 @@ body {
   margin: 0;
 }
 
+h1,
+h2 {
+  margin: 0;
+}
+
 .content {
   @include flex;
   flex-direction: column;
@@ -31,6 +36,8 @@ body {
   &__circle {
     width: 45px;
     height: 45px;
+    @include flex;
+    justify-content: center;
     @include border-radius(50%);
   }
 
