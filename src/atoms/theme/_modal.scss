@@ -68,6 +68,14 @@
   }
 }
 
+.input-required {
+  &::after {
+    content: "*";
+    color: $danger-color;
+    margin-left: 3px;
+  }
+}
+
 .required {
   border-color: $danger-color !important;
 }

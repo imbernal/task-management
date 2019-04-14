@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ModalTask from '../ModalTask/ModalTask';
 
-const Header = ({ title, priorities }) => (
+const Header = ({ title, onOpenModal }) => (
     <div className="header">
         <div className="header__logo">
             <img src="images/ge.png" alt="logo" />
@@ -11,7 +11,10 @@ const Header = ({ title, priorities }) => (
             <h1>{title}</h1>
         </div>
         <div className="header__options">
-            <ModalTask priorities={priorities} />
+            <button onClick={() => onOpenModal()} className='btn btn__primary btn__circle'>
+                <i className="fa fa-plus" aria-hidden="true"></i>
+            </button>
+
         </div>
 
     </div>
@@ -19,12 +22,11 @@ const Header = ({ title, priorities }) => (
 
 Header.propTypes = {
     title: PropTypes.string,
-    priorities: PropTypes.array.isRequired
+    onOpenModal: PropTypes.func
 };
 
 Header.defaultProps = {
     title: "Task Management",
-    priorities: []
 }
 
 export default Header;

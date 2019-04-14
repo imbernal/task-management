@@ -7,7 +7,7 @@ const Task = ({ task, onHandleState }) => (
 
     <div className="card">
         <div className="card__header">
-            <h2 className={`card__title  ${task.id === 1 ? 'card__due' : ''}`}>
+            <h2 className={`card__title ${task.id === 1 ? 'card__due' : ''}`}>
                 {task.name}
             </h2>
         </div>

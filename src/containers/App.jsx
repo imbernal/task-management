@@ -12,9 +12,9 @@ import priorities from '../data/priorities.json';
 // Components
 import {
   Header,
-  ListTask
+  ListTask,
+  ModalTask
 } from '../components/index'
-
 
 
 class App extends React.Component {
@@ -24,13 +24,30 @@ class App extends React.Component {
 
     this.state = {
       tasks,
-      priorities
+      priorities,
+      openModal: false
     };
 
     this.onHandleState = this.onHandleState.bind(this);
+    this.onOpenModal = this.onOpenModal.bind(this);
+    this.onCloseModal = this.onCloseModal.bind(this)
+    this.add = this.add.bind(this);
     this.complete = this.complete.bind(this);
     this.edit = this.edit.bind(this);
     this.delete = this.delete.bind(this);
+  }
+
+  onOpenModal() {
+    this.setState({ openModal: true })
+  }
+
+  onCloseModal() {
+
+    this.setState({ openModal: true })
+  }
+
+  add(task) {
+    this.setState({ openModal: false })
   }
 
   complete(task) {
@@ -44,25 +61,30 @@ class App extends React.Component {
       complete: 0,
       due: '02/12/34'
     }
-    this.setState(this.state.tasks, () => {
-      return this.state.tasks.push(newTask)
+    this.setState((stateObj) => {
+      return stateObj.tasks.push(newTask)
     });
   }
 
   delete(task) {
-    this.setState(this.state.tasks, () => {
-      return _.remove(this.state.tasks, item => task.id === item.id);
+    this.setState((stateObj) => {
+      return _.remove(stateObj.tasks, item => task.id === item.id);
     });
   }
 
   onHandleState(type, task) {
     switch (type !== '') {
+      case type === 'add':
+        add(task);
+        break;
       case type === 'edit':
         this.edit(task);
+        break;
       case type === 'delete':
         this.delete(task);
+        break;
       default:
-        this.complete(task);
+        break;
     }
   }
 
@@ -73,8 +95,15 @@ class App extends React.Component {
       <React.Fragment>
         <div className="content">
           <div className="content__container">
-            <Header priorities={this.state.priorities} />
+            <Header onOpenModal={this.onOpenModal} />
             <ListTask tasks={this.state.tasks} onHandleState={this.onHandleState} />
+            <ModalTask
+
+              priorities={this.state.priorities}
+              onHandleState={this.onHandleState}
+              openModal={this.state.openModal}
+              onOpenModal={this.onOpenModal}
+              onCloseModal={this.onCloseModal} />
           </div>
         </div>
       </React.Fragment>

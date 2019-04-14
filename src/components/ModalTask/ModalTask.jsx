@@ -11,19 +11,30 @@ import { isUndefined } from 'lodash';
 class ModalTask extends React.Component {
 
     constructor(props) {
+
         super(props);
 
         this.state = {
-            due: new Date(),
-            priority: '',
-            summary: '',
-            name: '',
-            isRequired: {
-                priority: false,
-                summary: false,
-                name: false
+            due: {
+                value: new Date(),
+                require: true,
+                hasError: false
+            },
+            priority: {
+                value: '',
+                require: true,
+                hasError: false
+            },
+            name: {
+                value: '',
+                required: true,
+                hasError: false
+            },
+            summary: {
+                value: '',
+                require: true,
+                hasError: false
             }
-
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -34,9 +45,13 @@ class ModalTask extends React.Component {
 
     handleChange(event) {
 
-        if (isUndefined(event.target)) {
+        if (isUndefined(_.get(event, 'target'))) {
             this.setState({
-                due: event
+                due: {
+                    value: event,
+                    hasError: false,
+                    ...this.state.due
+                }
             });
         } else {
 
@@ -44,39 +59,75 @@ class ModalTask extends React.Component {
             const value = event.target.value;
 
             this.setState({
-                [name]: value
+                [name]: {
+                    value: value,
+                    hasError: false,
+                    ...this.state.due
+                }
             });
         }
 
-        console.log(this.state);
     }
 
     formValidator() {
 
-        if (_.isEmpty(this.state.priority)) {
-            this.state.isRequired.priority = true;
-            return false;
+        let hasNotError = true;
+
+        if (_.isNull(this.state.due.value) && this.state.due.require) {
+            this.setState({
+
+                due: {
+                    ...this.state.due,
+                    hasError: true
+
+                }
+            });
+            hasNotError = false;
+
         }
 
-        if (_.isEmpty(this.state.summary)) {
-            this.state.isRequired.priority = true;
-            return false;
+        if (_.isEmpty(this.state.priority.value) && this.state.priority.require) {
+            this.setState({
+                priority: {
+                    ...this.state.priority,
+                    hasError: true
+                }
+            });
+            hasNotError = false;
         }
 
-        return true;
+        if (_.isEmpty(this.state.name.value) && this.state.name.required) {
+            this.setState({
+                name: {
+                    ...this.state.name,
+                    hasError: true
+                }
+            });
+            hasNotError = false;
+        }
+
+        if (_.isEmpty(this.state.summary.value) && this.state.summary.require) {
+            this.setState({
+                summary: {
+                    ...this.state.summary,
+                    hasError: true
+                }
+            });
+            hasNotError = false;
+        }
+
+        console.log(this.state)
+
+        return hasNotError;
 
     }
 
     handleSubmit(e) {
+        e.preventDefault();
 
         if (this.formValidator()) {
-            console.log('paso');
-            e.preventDefault();
-        } else {
-            console.log(this.state);
+            this.props.onHandleState('add', this.state);
         }
-
-        e.preventDefault();
 
     }
 
@@ -84,84 +135,74 @@ class ModalTask extends React.Component {
 
         return (
             <Popup
-                trigger={
-                    <button className='btn btn__primary btn__circle'>
-                        <i className="fa fa-plus" aria-hidden="true"></i>
-                    </button>
-                }
+                open={this.props.openModal}
+                onClose={this.props.closeModal}
                 modal
                 closeOnDocumentClick>
-                {close => (
-                    <div className="modal">
-                        <div className="modal__header">
-                            <h2>Create Task</h2>
-                        </div>
-                        <div className="modal__content">
-                            <form onSubmit={this.handleSubmit} className="taskForm">
-                                <div className="taskForm__topContent">
 
-                                    <div className="taskForm__name">
-                                        <label className="label-form" htmlFor="name">Name</label>
-                                        <input
-                                            name="name"
-                                            onChange={this.handleChange}
-                                            placeholder="Enter Name..."
-                                            className={`form-input ${this.state.isRequired.name ? 'required' : ''}`}
-                                            id="name" />
-
-
-                                    </div>
-                                    <div className="taskForm__due">
-                                        <label className="label-form" htmlFor="due">Due</label>
-                                        <DatePicker
-                                            className="form-input"
-                                            selected={this.state.due}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                    <div className="taskForm__priority">
-                                        <label className="label-form" htmlFor="priority">Priority</label>
-                                        <select
-                                            onChange={this.handleChange}
-                                            className={`form-input ${this.state.isRequired.priority ? 'required' : ''}`}
-                                            name="priority"
-                                            id="priority">
-                                            <option value=''>Select...</option>
-
-                                            {this.props.priorities.map(priority => {
-                                                <option value={priority.id}>{priority.name}</option>
-                                            })}
-                                        </select>
-                                    </div>
-
-                                    <div className="taskForm__summary">
-                                        <label className="label-form" htmlFor="summary">Summary</label>
-                                        <textarea
-                                            name="summary"
-                                            onChange={this.handleChange}
-                                            placeholder="Enter Summary..."
-                                            className={`form-input ${this.state.isRequired.summary ? 'required' : ''}`}
-                                            id="summary"
-                                            rows="10">
-                                        </textarea>
-
-                                    </div>
-                                </div>
-                                <div className="modal__footer">
-                                    <button onClick={close} className='btn btn__primary'>
-                                        Cancel
-                                    </button>
-                                    <button className='btn btn__success'>
-                                        Save
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-
+                <div className="modal">
+                    <div className="modal__header">
+                        <h2>Create Task</h2>
                     </div>
-                )}
+                    <div className="modal__content">
+                        <form className="taskForm">
+                            <div className="taskForm__topContent">
 
+                                <div className="taskForm__name">
+                                    <label className="label-form input-required" htmlFor="name">Name</label>
+                                    <input
+                                        name="name"
+                                        onChange={this.handleChange}
+                                        placeholder="Enter Name..."
+                                        className={`form-input ${this.state.name.hasError ? 'required' : ''}`}
+                                        id="name" />
+                                </div>
+                                <div className="taskForm__due">
+                                    <label className="label-form input-required" htmlFor="due">Due</label>
+                                    <DatePicker
+                                        selected={this.state.due.value}
+                                        onChange={this.handleChange}
+                                        className={`form-input ${this.state.name.hasError ? 'required' : ''}`}
+                                    />
+                                </div>
+                                <div className="taskForm__priority">
+                                    <label className="label-form input-required" htmlFor="priority">Priority</label>
+                                    <select
+                                        onChange={this.handleChange}
+                                        className={`form-input ${this.state.priority.hasError ? 'required' : ''}`}
+                                        name="priority"
+                                        id="priority">
+                                        <option value=''>Select...</option>
 
+                                        {this.props.priorities.map((priority, i) => <option key={i} value={priority.id}>{priority.name}</option>)}
+                                    </select>
+                                </div>
+
+                                <div className="taskForm__summary">
+                                    <label className="label-form input-required" htmlFor="summary">Summary</label>
+                                    <textarea
+                                        name="summary"
+                                        onChange={this.handleChange}
+                                        placeholder="Enter Summary..."
+                                        className={`form-input ${this.state.summary.hasError ? 'required' : ''}`}
+                                        id="summary"
+                                        rows="10">
+                                    </textarea>
+
+                                </div>
+                            </div>
+                            <div className="modal__footer">
+                                <button onClick={this.props.closeModal} className='btn btn__primary'>
+                                    Cancel
+                                </button>
+                                <button onClick={this.handleSubmit} className='btn btn__success'>
+                                    Save
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
             </Popup>
         );
     }
