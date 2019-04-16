@@ -2,49 +2,49 @@
     {
         "id": 1,
         "name": "This is my task 1",
-        "complete": 1,
+        "complete": true,
         "due": "Thu Apr 11 2019 20:55:54 GMT-0400 (Eastern Daylight Time)",
-        "priority": 1,
+        "priority": "Medium",
         "summary": "this is a task"
     },
     {
         "id": 2,
         "name": "This is my task 2",
-        "complete": 0,
+        "complete": false,
         "due": "04/10/2019",
-        "priority": 1,
+        "priority": "Low",
         "summary": "this is a task"
     },
     {
         "id": 3,
         "name": "This is my task 3",
-        "complete": 0,
+        "complete": false,
         "due": "04/10/2019",
-        "priority": 1,
+        "priority": "Low",
         "summary": "this is a task"
     },
     {
         "id": 4,
         "name": "This is my task 4",
-        "complete": 0,
+        "complete": false,
         "due": "04/10/2019",
-        "priority": 1,
+        "priority": "Low",
         "summary": "this is a task"
     },
     {
         "id": 5,
         "name": "This is my task 5",
-        "complete": 0,
+        "complete": false,
         "due": "04/10/2019",
-        "priority": 1,
+        "priority": "High",
         "summary": "this is a task"
     },
     {
         "id": 6,
         "name": "This is my task 6",
-        "complete": 0,
+        "complete": false,
         "due": "04/10/2019",
-        "priority": 1,
+        "priority": "High",
         "summary": "this is a task"
     }
 ]

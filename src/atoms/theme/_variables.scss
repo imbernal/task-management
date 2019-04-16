@@ -1,5 +1,5 @@
 $white-color: #ffffff;
-$yellow-color: #ffc107;
+$warning-color: #ffc107;
 $success-color: #28a745;
 $primary-color: #007bff;
 $danger-color: #dc3545;
@@ -20,6 +20,10 @@ $border-hover-danger: #bd2130;
 $border-success: $success-color;
 $success-hover: #218838;
 $border-hover-success: #1e7e34;
+
+$border-warning: $warning-color;
+$warning-hover: #e0a800;
+$border-hover-warning: #d39e00;
 
 @mixin flex {
   display: -webkit-flex;

@@ -13,7 +13,8 @@ import priorities from '../data/priorities.json';
 import {
   Header,
   ListTask,
-  ModalTask
+  ModalTask,
+  PopUp
 } from '../components/index'
 
 
@@ -25,45 +26,80 @@ class App extends React.Component {
     this.state = {
       tasks,
       priorities,
-      openModal: false
+      openModal: false,
+      currentTask: null
     };
 
     this.onHandleState = this.onHandleState.bind(this);
     this.onOpenModal = this.onOpenModal.bind(this);
     this.onCloseModal = this.onCloseModal.bind(this)
-    this.add = this.add.bind(this);
+    this.create = this.create.bind(this);
     this.complete = this.complete.bind(this);
     this.edit = this.edit.bind(this);
     this.delete = this.delete.bind(this);
+    this.setCurrentTask = this.setCurrentTask.bind(this);
   }
 
   onOpenModal() {
     this.setState({ openModal: true })
   }
 
-  onCloseModal() {
-
-    this.setState({ openModal: true })
+  setCurrentTask(task) {
+    this.setState({
+      currentTask: task,
+      openModal: true
+    })
   }
 
-  add(task) {
-    this.setState({ openModal: false })
+  onCloseModal() {
+
+    this.setState({
+      openModal: false,
+      currentTask: null
+    })
+  }
+
+  create(task) {
+    this.setState(stateObj => {
+      return { tasks: [...stateObj.tasks, task], openModal: false };
+    })
+
   }
 
   complete(task) {
 
+    this.setState({
+      tasks: _.map(this.state.tasks, item => {
+        if (item.id === task.id) {
+          item.complete = !item.complete
+        }
+        return item;
+      })
+
+    })
+
   }
 
   edit(task) {
-    let newTask = {
-      id: '4',
-      name: 'isra',
-      complete: 0,
-      due: '02/12/34'
-    }
-    this.setState((stateObj) => {
-      return stateObj.tasks.push(newTask)
-    });
+
+    this.setState({
+      tasks: _.map(this.state.tasks, item => item.id === task.id ? task : item),
+      openModal: false
+    })
+
+    // let oldTask = _.filter(this.state.tasks, item => item.id === task.id);
+
+    // oldTask = { ...task };
+    // console.log(oldTask)
+    // let newTask = {
+    //   id: '4',
+    //   name: 'isra',
+    //   complete: 0,
+    //   due: '02/12/34'
+    // }
+    // this.setState((stateObj) => {
+    //   return stateObj.tasks.push(newTask)
+    // });
   }
 
   delete(task) {
@@ -74,14 +110,20 @@ class App extends React.Component {
 
   onHandleState(type, task) {
     switch (type !== '') {
-      case type === 'add':
-        add(task);
+      case type === 'create':
+        this.create(task);
         break;
       case type === 'edit':
         this.edit(task);
         break;
       case type === 'delete':
         this.delete(task);
+        break;
+      case type === 'setTask':
+        this.setCurrentTask(task);
+        break;
+      case type === 'complete':
+        this.complete(task);
         break;
       default:
         break;
@@ -97,13 +139,17 @@ class App extends React.Component {
           <div className="content__container">
             <Header onOpenModal={this.onOpenModal} />
             <ListTask tasks={this.state.tasks} onHandleState={this.onHandleState} />
-            <ModalTask
+            <PopUp openModal={this.state.openModal} onCloseModal={this.onCloseModal}>
 
-              priorities={this.state.priorities}
-              onHandleState={this.onHandleState}
-              openModal={this.state.openModal}
-              onOpenModal={this.onOpenModal}
-              onCloseModal={this.onCloseModal} />
+              <ModalTask
+                priorities={this.state.priorities}
+                currentTask={this.state.currentTask}
+                onHandleState={this.onHandleState}
+                onOpenModal={this.onOpenModal}
+                onCloseModal={this.onCloseModal}
+              />
+            </PopUp>
+
           </div>
         </div>
       </React.Fragment>

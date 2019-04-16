@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ModalTask from '../ModalTask/ModalTask';
 
 const Header = ({ title, onOpenModal }) => (
     <div className="header">

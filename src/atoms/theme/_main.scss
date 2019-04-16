@@ -51,6 +51,15 @@ h2 {
     }
   }
 
+  &__default {
+    color: black;
+
+    &:hover {
+      background-color: $app-background-color;
+      border-color: $app-background-color;
+    }
+  }
+
   &__primary {
     background-color: $primary-color;
     border-color: $border-primary;
@@ -68,6 +77,16 @@ h2 {
     &:hover {
       background-color: $danger-hover;
       border-color: $border-hover-danger;
+    }
+  }
+
+  &__warning {
+    background-color: $warning-color;
+    border-color: $border-warning;
+
+    &:hover {
+      background-color: $warning-hover;
+      border-color: $border-hover-warning;
     }
   }
 }

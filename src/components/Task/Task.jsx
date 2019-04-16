@@ -1,23 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Moment from 'react-moment';
+import moment from 'moment';
 
 
 const Task = ({ task, onHandleState }) => (
 
     <div className="card">
         <div className="card__header">
-            <h2 className={`card__title ${task.id === 1 ? 'card__due' : ''}`}>
+            <h3 className="card__title">
                 {task.name}
-            </h2>
+            </h3>
         </div>
         <div className="card__content">
             <ul>
                 <li><strong>Due: </strong>
-                    <Moment format="YYYY/MM/DD">{task.due}</Moment>
+                    <i className={`card__content__due fa ${!moment(task.due).isAfter(moment(new Date())) ? 'fa-exclamation-circle' : ''}`} aria-hidden="true"></i>
+                    {moment(task.due).format("YYYY/MM/DD")}
                 </li>
-                <li><strong>Complete: </strong>
-                    {task.complete === 1 ? 'True' : "False"}
+                <li><strong>Status: </strong>
+                    {task.complete ? 'Completed' : "Incompleted"}
                 </li>
                 <li>
                     <strong>Priority: </strong>
@@ -29,17 +30,17 @@ const Task = ({ task, onHandleState }) => (
             </ul>
         </div>
         <div className="card__footer">
-            <button onClick={() => onHandleState('complete', task)} className='btn btn__success btn__circle'>
-                <i className="fa fa-check" aria-hidden="true"></i>
+            <button onClick={() => onHandleState('complete', task)} className={`btn btn__circle btn__${task.complete ? 'success' : 'warning'}`} >
+                <i className={`fa ${task.complete ? 'fa-lock' : 'fa-unlock-alt'}`} aria-hidden="true"></i>
             </button>
-            <button onClick={() => onHandleState('edit', task)} className='btn btn__primary btn__circle'>
+            <button onClick={() => onHandleState('setTask', task)} className='btn btn__default btn__circle'>
                 <i className="fa fa-pencil" aria-hidden="true"></i>
             </button>
-            <button onClick={() => onHandleState('delete', task)} className='btn btn__danger btn__circle'>
+            <button onClick={() => onHandleState('delete', task)} className='btn btn__default btn__circle'>
                 <i className="fa fa-trash" aria-hidden="true"></i>
             </button>
         </div>
-    </div>
+    </div >
 
 );
 

@@ -8,31 +8,22 @@
 
   &__title {
     margin: 0;
-    background: $header-color;
+    background: $white-color;
     padding: 10px;
-    color: #ffffff;
+    border-bottom: 2px solid $app-background-color;
     text-align: center;
-  }
-
-  &__due {
-    background: $danger-color !important;
   }
 
   &__content {
     padding: 10px;
 
-    ul {
-      list-style-type: none;
+    &__due {
+      color: $danger-color !important;
+      margin-right: 5px;
     }
 
     li {
       font-size: 17px;
-
-      &::before {
-        content: "•";
-        color: $header-color;
-        margin-right: 10px;
-      }
     }
   }
 
@@ -41,5 +32,6 @@
     display: flex;
     margin-bottom: 10px;
     justify-content: space-around;
+    border-top: 1px solid $app-background-color;
   }
 }
