@@ -1,50 +1,50 @@
 [
     {
         "id": 1,
-        "name": "This is my task 1",
+        "name": "Investigation",
         "complete": true,
         "due": "Thu Apr 11 2019 20:55:54 GMT-0400 (Eastern Daylight Time)",
         "priority": "Medium",
-        "summary": "this is a task"
+        "summary": "This is a summary task"
     },
     {
         "id": 2,
-        "name": "This is my task 2",
+        "name": "Add migration",
         "complete": false,
         "due": "04/10/2019",
         "priority": "Low",
-        "summary": "this is a task"
+        "summary": "This is a summary task"
     },
     {
         "id": 3,
-        "name": "This is my task 3",
+        "name": "This is my favorite task",
         "complete": false,
         "due": "04/10/2019",
         "priority": "Low",
-        "summary": "this is a task"
+        "summary": "This is a summary task"
     },
     {
         "id": 4,
-        "name": "This is my task 4",
+        "name": "Upgrade Nodejs",
         "complete": false,
         "due": "04/10/2019",
         "priority": "Low",
-        "summary": "this is a task"
+        "summary": "This is a summary task"
     },
     {
         "id": 5,
-        "name": "This is my task 5",
+        "name": "Merge branch v1.5 with development",
         "complete": false,
         "due": "04/10/2019",
         "priority": "High",
-        "summary": "this is a task"
+        "summary": "This is a summary task"
     },
     {
         "id": 6,
-        "name": "This is my task 6",
+        "name": "Create a branch for the new features",
         "complete": false,
         "due": "04/10/2019",
         "priority": "High",
-        "summary": "this is a task"
+        "summary": "This is a summary task"
     }
 ]
