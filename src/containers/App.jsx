@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 
 import '../atoms/theme/index.scss';
 import 'font-awesome/css/font-awesome.min.css';
-import * as _ from 'lodash';
+import { map, remove } from 'lodash';
 
 import tasks from '../data/tasks';
 import priorities from '../data/priorities.json';
+
+
+const PopUp = React.lazy(() => import('../components/PopUp/PopUp'));
 
 
 // Components
@@ -14,7 +17,7 @@ import {
   Header,
   TaskList,
   TaskModal,
-  PopUp
+
 } from '../components/index'
 
 
@@ -69,7 +72,7 @@ class App extends React.Component {
   complete(task) {
 
     this.setState({
-      tasks: _.map(this.state.tasks, item => {
+      tasks: map(this.state.tasks, item => {
         if (item.id === task.id) {
           item.complete = !item.complete
         }
@@ -83,7 +86,7 @@ class App extends React.Component {
   edit(task) {
 
     this.setState({
-      tasks: _.map(this.state.tasks, item => item.id === task.id ? task : item),
+      tasks: map(this.state.tasks, item => item.id === task.id ? task : item),
       openModal: false,
       currentTask: null
     })
@@ -91,7 +94,7 @@ class App extends React.Component {
 
   delete(task) {
     this.setState((stateObj) => {
-      return _.remove(stateObj.tasks, item => task.id === item.id);
+      return remove(stateObj.tasks, item => task.id === item.id);
     });
   }
 
@@ -126,15 +129,17 @@ class App extends React.Component {
           <div className="content__container">
             <Header onOpenModal={this.onOpenModal} />
             <TaskList tasks={this.state.tasks} onHandleState={this.onHandleState} />
-            <PopUp openModal={this.state.openModal} onCloseModal={this.onCloseModal}>
-              <TaskModal
-                priorities={this.state.priorities}
-                currentTask={this.state.currentTask}
-                onHandleState={this.onHandleState}
-                onOpenModal={this.onOpenModal}
-                onCloseModal={this.onCloseModal}
-              />
-            </PopUp>
+            <React.Suspense fallback={<div>loading ...</div>}>
+              <PopUp openModal={this.state.openModal} onCloseModal={this.onCloseModal}>
+                <TaskModal
+                  priorities={this.state.priorities}
+                  currentTask={this.state.currentTask}
+                  onHandleState={this.onHandleState}
+                  onOpenModal={this.onOpenModal}
+                  onCloseModal={this.onCloseModal}
+                />
+              </PopUp>
+            </React.Suspense>
           </div>
         </div>
       </React.Fragment>

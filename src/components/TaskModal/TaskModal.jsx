@@ -5,7 +5,7 @@ import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
-import { isUndefined } from 'lodash';
+import { isUndefined, isNull, get, isEmpty } from 'lodash';
 
 
 class TaskModal extends React.Component {
@@ -44,13 +44,13 @@ class TaskModal extends React.Component {
     }
 
     getCurrentValue(field) {
-        return _.isNull(this.props.currentTask) ? '' : _.get(this.props.currentTask, field);
+        return isNull(this.props.currentTask) ? '' : get(this.props.currentTask, field);
     }
 
 
     handleChange(event) {
 
-        if (isUndefined(_.get(event, 'target'))) {
+        if (isUndefined(get(event, 'target'))) {
             this.setState({
                 due: {
                     value: event,
@@ -80,7 +80,7 @@ class TaskModal extends React.Component {
         let hasNotError = true;
 
 
-        if (_.isNull(this.state.due.value) && this.state.due.require) {
+        if (isNull(this.state.due.value) && this.state.due.require) {
             this.setState({
 
                 due: {
@@ -93,7 +93,7 @@ class TaskModal extends React.Component {
 
         }
 
-        if (_.isEmpty(this.state.priority.value) && this.state.priority.require) {
+        if (isEmpty(this.state.priority.value) && this.state.priority.require) {
             this.setState({
                 priority: {
                     ...this.state.priority,
@@ -103,7 +103,7 @@ class TaskModal extends React.Component {
             hasNotError = false;
         }
 
-        if (_.isEmpty(this.state.name.value) && this.state.name.require) {
+        if (isEmpty(this.state.name.value) && this.state.name.require) {
             this.setState({
                 name: {
                     ...this.state.name,
@@ -117,7 +117,7 @@ class TaskModal extends React.Component {
 
         }
 
-        if (_.isEmpty(this.state.summary.value) && this.state.summary.require) {
+        if (isEmpty(this.state.summary.value) && this.state.summary.require) {
             this.setState({
                 summary: {
                     ...this.state.summary,
@@ -139,15 +139,15 @@ class TaskModal extends React.Component {
 
         if (this.formValidator()) {
 
-            const method = _.isNull(this.props.currentTask) ? 'create' : 'edit';
+            const method = isNull(this.props.currentTask) ? 'create' : 'edit';
 
             this.props.onHandleState(method, {
                 id: method === 'create' ? uuid.v4() : this.getCurrentValue('id'),
-                name: _.get(this.state, 'name.value'),
+                name: get(this.state, 'name.value'),
                 complete: 0,
-                priority: _.get(this.state, 'priority.value'),
-                summary: _.get(this.state, 'summary.value'),
-                due: moment(_.get(this.state, 'due.value')).format()
+                priority: get(this.state, 'priority.value'),
+                summary: get(this.state, 'summary.value'),
+                due: moment(get(this.state, 'due.value')).format()
             });
 
         }
