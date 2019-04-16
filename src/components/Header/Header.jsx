@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Header = ({ title, onOpenModal }) => (
     <div className="header">
         <div className="header__logo">
-            <img src="images/ge.png" alt="logo" />
+            <img src="/images/ge.png" alt="logo" />
         </div>
         <div className="header__title">
             <h1>{title}</h1>
