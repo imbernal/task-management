@@ -1,4 +1,4 @@
 export { default as Header } from './Header/Header';
 export { default as PopUp } from './PopUp/PopUp';
-export { default as ListTask } from './ListTask/ListTask';
-export { default as ModalTask } from './ModalTask/ModalTask';
+export { default as TaskList } from './TaskList/TaskList';
+export { default as TaskModal } from './TaskModal/TaskModal';

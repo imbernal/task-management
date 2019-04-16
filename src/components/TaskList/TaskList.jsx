@@ -2,18 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Task from '../Task/Task';
 
-const ListTask = ({ tasks, onHandleState }) => (
+const TaskList = ({ tasks, onHandleState }) => (
 
-    <div className="listTask">
-        <div className="listTask__cards">
+    <div className="taskList">
+        <div className="taskList__cards">
             {tasks.map((item, i) => <Task task={item} onHandleState={onHandleState} key={i} />)}
         </div>
     </div>
 );
 
-ListTask.propTypes = {
+TaskList.propTypes = {
     tasks: PropTypes.array.isRequired,
     onHandleState: PropTypes.func.isRequired
 };
 
-export default ListTask;
+export default TaskList;

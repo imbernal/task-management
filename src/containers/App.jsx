@@ -12,8 +12,8 @@ import priorities from '../data/priorities.json';
 // Components
 import {
   Header,
-  ListTask,
-  ModalTask,
+  TaskList,
+  TaskModal,
   PopUp
 } from '../components/index'
 
@@ -61,7 +61,7 @@ class App extends React.Component {
 
   create(task) {
     this.setState(stateObj => {
-      return { tasks: [...stateObj.tasks, task], openModal: false };
+      return { tasks: [...stateObj.tasks, task], openModal: false, currentTask: null };
     })
 
   }
@@ -86,20 +86,6 @@ class App extends React.Component {
       tasks: _.map(this.state.tasks, item => item.id === task.id ? task : item),
       openModal: false
     })
-
-    // let oldTask = _.filter(this.state.tasks, item => item.id === task.id);
-
-    // oldTask = { ...task };
-    // console.log(oldTask)
-    // let newTask = {
-    //   id: '4',
-    //   name: 'isra',
-    //   complete: 0,
-    //   due: '02/12/34'
-    // }
-    // this.setState((stateObj) => {
-    //   return stateObj.tasks.push(newTask)
-    // });
   }
 
   delete(task) {
@@ -138,10 +124,9 @@ class App extends React.Component {
         <div className="content">
           <div className="content__container">
             <Header onOpenModal={this.onOpenModal} />
-            <ListTask tasks={this.state.tasks} onHandleState={this.onHandleState} />
+            <TaskList tasks={this.state.tasks} onHandleState={this.onHandleState} />
             <PopUp openModal={this.state.openModal} onCloseModal={this.onCloseModal}>
-
-              <ModalTask
+              <TaskModal
                 priorities={this.state.priorities}
                 currentTask={this.state.currentTask}
                 onHandleState={this.onHandleState}
@@ -149,7 +134,6 @@ class App extends React.Component {
                 onCloseModal={this.onCloseModal}
               />
             </PopUp>
-
           </div>
         </div>
       </React.Fragment>

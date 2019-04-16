@@ -8,7 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { isUndefined } from 'lodash';
 
 
-class ModalTask extends React.Component {
+class TaskModal extends React.Component {
 
     constructor(props) {
 
@@ -27,7 +27,7 @@ class ModalTask extends React.Component {
             },
             name: {
                 value: this.getCurrentValue('name'),
-                required: true,
+                require: true,
                 hasError: false
             },
             summary: {
@@ -41,12 +41,12 @@ class ModalTask extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.formValidator = this.formValidator.bind(this);
         this.getCurrentValue = this.getCurrentValue.bind(this);
-
     }
 
     getCurrentValue(field) {
         return _.isNull(this.props.currentTask) ? '' : _.get(this.props.currentTask, field);
     }
+
 
     handleChange(event) {
 
@@ -63,9 +63,6 @@ class ModalTask extends React.Component {
             const name = event.target.name;
             const value = event.target.value;
 
-            if (!_.isNull(this.props.currentTask))
-                this.props.currentTask[name] = value;
-
             this.setState({
 
                 [name]: {
@@ -81,6 +78,7 @@ class ModalTask extends React.Component {
     formValidator() {
 
         let hasNotError = true;
+
 
         if (_.isNull(this.state.due.value) && this.state.due.require) {
             this.setState({
@@ -105,7 +103,7 @@ class ModalTask extends React.Component {
             hasNotError = false;
         }
 
-        if (_.isEmpty(this.state.name.value) && this.state.name.required) {
+        if (_.isEmpty(this.state.name.value) && this.state.name.require) {
             this.setState({
                 name: {
                     ...this.state.name,
@@ -113,7 +111,10 @@ class ModalTask extends React.Component {
 
                 }
             });
+
             hasNotError = false;
+
+
         }
 
         if (_.isEmpty(this.state.summary.value) && this.state.summary.require) {
@@ -125,6 +126,8 @@ class ModalTask extends React.Component {
             });
             hasNotError = false;
         }
+
+
 
         return hasNotError;
 
@@ -146,6 +149,7 @@ class ModalTask extends React.Component {
                 summary: _.get(this.state, 'summary.value'),
                 due: moment(_.get(this.state, 'due.value')).format()
             });
+
         }
 
     }
@@ -178,7 +182,7 @@ class ModalTask extends React.Component {
                                 <DatePicker
                                     selected={this.state.due.value}
                                     onChange={this.handleChange}
-                                    className={`form-input ${this.state.name.hasError ? 'required' : ''}`}
+                                    className={`form-input ${this.state.due.hasError ? 'required' : ''}`}
                                 />
                             </div>
                             <div className="taskForm__priority">
@@ -227,4 +231,4 @@ class ModalTask extends React.Component {
     }
 }
 
-export default ModalTask;
+export default TaskModal;

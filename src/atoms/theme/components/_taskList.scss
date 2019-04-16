@@ -1,6 +1,6 @@
 @import "../../atoms/theme/variables";
 
-.listTask {
+.taskList {
   @include flex;
 
   &__cards {
