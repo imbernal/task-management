@@ -6,8 +6,6 @@
 
 1.  **Install Dependencies**
 
-    The Gatsby CLI helps you create new sites using Gatsby starters (like this one!)
-
     ```sh
     npm install
     ```
@@ -20,4 +18,5 @@
     npm run develop
     ```
 4.  **Open the project.**
+
     http://localhost:8000/
