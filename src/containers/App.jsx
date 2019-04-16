@@ -84,7 +84,8 @@ class App extends React.Component {
 
     this.setState({
       tasks: _.map(this.state.tasks, item => item.id === task.id ? task : item),
-      openModal: false
+      openModal: false,
+      currentTask: null
     })
   }
 
