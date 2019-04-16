@@ -18,7 +18,7 @@ const Task = ({ task, onHandleState }) => (
                     {moment(task.due).format("YYYY/MM/DD")}
                 </li>
                 <li><strong>Status: </strong>
-                    {task.complete ? 'Completed' : "Incompleted"}
+                    {task.complete ? 'Complete' : "Incomplete"}
                 </li>
                 <li>
                     <strong>Priority: </strong>

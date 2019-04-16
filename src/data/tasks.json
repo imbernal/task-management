@@ -5,7 +5,7 @@
         "complete": true,
         "due": "Thu Apr 11 2019 20:55:54 GMT-0400 (Eastern Daylight Time)",
         "priority": "Medium",
-        "summary": "This is a summary task"
+        "summary": "This is a task summary"
     },
     {
         "id": 2,
@@ -13,7 +13,7 @@
         "complete": false,
         "due": "04/10/2019",
         "priority": "Low",
-        "summary": "This is a summary task"
+        "summary": "This is a task summary"
     },
     {
         "id": 3,
@@ -21,7 +21,7 @@
         "complete": false,
         "due": "04/10/2019",
         "priority": "Low",
-        "summary": "This is a summary task"
+        "summary": "This is a task summary"
     },
     {
         "id": 4,
@@ -29,7 +29,7 @@
         "complete": false,
         "due": "04/10/2019",
         "priority": "Low",
-        "summary": "This is a summary task"
+        "summary": "This is a task summary"
     },
     {
         "id": 5,
@@ -37,7 +37,7 @@
         "complete": false,
         "due": "04/10/2019",
         "priority": "High",
-        "summary": "This is a summary task"
+        "summary": "This is a task summary"
     },
     {
         "id": 6,
@@ -45,6 +45,6 @@
         "complete": false,
         "due": "04/10/2019",
         "priority": "High",
-        "summary": "This is a summary task"
+        "summary": "This is a task summary"
     }
 ]
