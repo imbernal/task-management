@@ -5,5 +5,5 @@ yarn-error.log
 
 # Build directory
 /public
-!public/images/
+
 .DS_Store
